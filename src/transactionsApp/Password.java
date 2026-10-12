@@ -20,7 +20,12 @@ public class Password implements Hashable {
 		this.hashPass = hashPassword(password);
 	}
 	
-	public byte[] generateSalt() { // ? why cant it be private
+	// for change password in user without using the constructor again
+	protected void setHashPass(char[]password) throws Exception {
+		this.hashPass = hashPassword(password);
+	}
+	
+	public byte[] generateSalt() {
 		SecureRandom random = new SecureRandom();
 		byte[]salt = new byte[SALT_LENGTH];
 		random.nextBytes(salt);
