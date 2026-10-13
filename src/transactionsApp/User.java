@@ -29,12 +29,9 @@ public class User {
 	protected boolean verifyPassword(String password) throws Exception {
 		return this.password.verifyPassword(password.toCharArray());
 	}
-	protected void setPassword(String password) throws Exception {
-		try {
-			this.password.setHashPass(password.toCharArray());
-		} catch(Exception e) {
-			throw e;
-		}
+	
+	protected void setPassword(String password) throws Exception { // change password
+		this.password.setHashPass(password.toCharArray());
 	}
 	
 	public int getAge() {
@@ -56,7 +53,7 @@ public class User {
 		this.transactions.add(t);
 	}
 	
-	private double calculateTransactions() {
+	private double calculateTransactionsTotal() {
 		int sum = 0;
 		for(Transaction t : this.transactions) {
 			sum += t.getCost();

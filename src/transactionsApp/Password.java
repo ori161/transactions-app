@@ -11,7 +11,7 @@ public class Password implements Hashable {
 	private static final int ITERATIONS = 50000;
 	private static final int KEY_LENGTH = 256; // bits
 			
-	public String hashPass;
+	private String hashPass;
 	
 	public Password(char[]password) throws Exception{
 		setHashPass(password);
@@ -25,6 +25,7 @@ public class Password implements Hashable {
 		this.hashPass = hashPassword(password);
 	}
 	
+	@Override
 	public byte[] generateSalt() {
 		SecureRandom random = new SecureRandom();
 		byte[]salt = new byte[SALT_LENGTH];
@@ -32,6 +33,7 @@ public class Password implements Hashable {
 		return salt;
 	}
 	
+	@Override
 	public String hashPassword(char[]password)throws Exception {
 		byte[]salt = generateSalt();
 		byte[]hash = pbkdf2(password, salt);
@@ -39,6 +41,7 @@ public class Password implements Hashable {
         Base64.getEncoder().encodeToString(hash);
 	}
 	
+	@Override
 	public boolean verifyPassword(char[]password) throws Exception{
 		 if (this.hashPass == null || !this.hashPass.contains(":")) {
 	            throw new IllegalArgumentException("Stored password format is invalid.");

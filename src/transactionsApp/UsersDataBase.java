@@ -3,7 +3,7 @@ package transactionsApp;
 import java.util.HashMap;
 
 public class UsersDataBase {
-	private HashMap<String, User>users;
+	private final HashMap<String, User>users;
 	
 	public UsersDataBase() {
 		this.users = new HashMap<>();
