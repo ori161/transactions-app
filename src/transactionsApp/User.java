@@ -21,11 +21,14 @@ public class User {
 	
 	public void setUsername(String username) throws OutOfRangeException {
 		if(username.length() < 3) {
-			throw new OutOfRangeException("Name must be at least 3 letters. Enter name again");
+			throw new OutOfRangeException("Name must be at least 3 letters. Enter name again: ");
 		}
 		this.username = username; // need to change in user data base???
 	}
 	
+	protected boolean verifyPassword(String password) throws Exception {
+		return this.password.verifyPassword(password.toCharArray());
+	}
 	protected void setPassword(String password) throws Exception {
 		try {
 			this.password.setHashPass(password.toCharArray());
@@ -54,7 +57,11 @@ public class User {
 	}
 	
 	
-	// equals, toString
+	// equals
+	
+	public String toString() {
+		return "[REDACTED]";
+	}
 	
 	
 }

@@ -14,14 +14,14 @@ public class Password implements Hashable {
 	public String hashPass;
 	
 	public Password(char[]password) throws Exception{
-		if(password.length < 8) {
-			throw new PasswordNotValidException();
-		}
-		this.hashPass = hashPassword(password);
+		setHashPass(password);
 	}
 	
 	// for change password in user without using the constructor again
 	protected void setHashPass(char[]password) throws Exception {
+		if(password.length < 8) {
+			throw new PasswordNotValidException();
+		}
 		this.hashPass = hashPassword(password);
 	}
 	
@@ -67,5 +67,11 @@ public class Password implements Hashable {
 		PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH);
 		SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
 		return skf.generateSecret(spec).getEncoded();
+	}
+	
+	//equals 
+	
+	public String toString() {
+		return "[REDACTED]";
 	}
 }
