@@ -14,7 +14,7 @@ public class UsersDataBase {
 	}
 	
 	// add/remove method
-	protected void addUser(User user) throws UsernameExistException {
+	protected void addUser(User user) throws UsernameExistException { // sign up method
 		String username = user.getUsername();
 		if(!this.users.isEmpty()) {
 			// if users not empty than check if name already exists
@@ -25,7 +25,7 @@ public class UsersDataBase {
 		this.users.put(username, user);
 	}
 	
-	protected void removeUser(User user) {
+	protected void removeUser(User user) { // "delete" user
 		String username = user.getUsername();
 		this.users.remove(username);
 	}

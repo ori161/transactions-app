@@ -48,14 +48,21 @@ public class User {
 		this.age = age;
 	}
 	
-	protected ArrayList<Transaction> getTransactions(){
+	private ArrayList<Transaction> getTransactions(){
 		return this.transactions;
 	}
 	
-	protected void addTransaction(Transaction t) {
+	private void addTransaction(Transaction t) {
 		this.transactions.add(t);
 	}
 	
+	private double calculateTransactions() {
+		int sum = 0;
+		for(Transaction t : this.transactions) {
+			sum += t.getCost();
+		}
+		return sum;
+	}
 	
 	// equals
 	
