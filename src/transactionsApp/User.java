@@ -19,6 +19,7 @@ public class User {
 		return this.username;
 	}
 	
+	// check later cause we need to change the key if we change the username(if we desire to have a change username feature
 	public void setUsername(String username) throws OutOfRangeException {
 		if(username.length() < 3) {
 			throw new OutOfRangeException("Name must be at least 3 letters. Enter name again: ");
@@ -64,7 +65,7 @@ public class User {
 	// equals
 	
 	public String toString() {
-		return "[REDACTED]";
+		return this.username; //"[REDACTED]";
 	}
 	
 	

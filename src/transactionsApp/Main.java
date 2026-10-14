@@ -4,12 +4,19 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			User u = new User("oriOhayon4", "orio20077", 18);
-			User u1 = new User("ori", "orio20077", 18);
-			UsersDataBase database = new UsersDataBase();
-			database.addUser(u);
-			
-			System.out.print(database.toString());
+			TransactionAppBackend be = new TransactionAppBackend();
+			be.signup("oriOhayon4", "orio20077", 18);
+			be.signup("ori", "orio20077", 18);
+			System.out.println(be.toString());
+			be.login("oriOhayon4", "orio20077");
+			System.out.println(be.toString());
+			//be.signout();
+			//System.out.println(be.toString());
+			be.changePassword("orio20077@");
+			be.signout();
+			be.login("oriOhayon4", "orio20077@");
+			be.changePassword("orio20077");
+			System.out.println(be.toString());
 		}catch(Exception e) {
 			System.out.print(e);
 		}

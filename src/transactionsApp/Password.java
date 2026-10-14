@@ -22,7 +22,12 @@ public class Password implements Hashable {
 		if(password.length < 8) {
 			throw new PasswordNotValidException();
 		}
-		this.hashPass = hashPassword(password);
+		
+		String newPass = hashPassword(password);
+		if(this.hashPass != null && this.verifyPassword(password)) { // check if the current password is the same as the new one
+			throw new ChangeToCurrentPasswordException();
+		}
+		this.hashPass = newPass;
 	}
 	
 	@Override
