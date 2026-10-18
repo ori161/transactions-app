@@ -1,18 +1,22 @@
 package transactionsApp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
+	private final HashMap<Integer, Double>sumByMonth;
 	private String username;
 	private Password password;
 	private int age;
 	private ArrayList<Transaction>transactions;
+	
 	
 	public User(String username, String password, int age) throws Exception {
 		setUsername(username);
 		this.password = new Password(password.toCharArray());
 		setAge(age);
 		this.transactions = new ArrayList<Transaction>();
+		this.sumByMonth = new HashMap<>();
 	}
 	
 	public String getUsername() {
@@ -50,16 +54,22 @@ public class User {
 		return this.transactions;
 	}
 	
-	private void addTransaction(Transaction t) {
+	protected void addTransaction(Transaction t) {
 		this.transactions.add(t);
+		this.sumByMonth.merge(t.getDateOfTransaction().getMonthValue(), t.getCost(), Double::sum); //add the transaction cost to his month
+		// to see later on the chart the amount of expanse each month
 	}
 	
-	private double calculateTransactionsTotal() {
+	protected double calculateTransactionsTotal() {
 		int sum = 0;
 		for(Transaction t : this.transactions) {
 			sum += t.getCost();
 		}
 		return sum;
+	}
+	
+	protected HashMap<Integer, Double> getSumByMonth(){
+		return this.sumByMonth;
 	}
 	
 	// equals

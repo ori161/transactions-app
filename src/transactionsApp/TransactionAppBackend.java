@@ -1,6 +1,9 @@
 package transactionsApp;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+
+import transactionsApp.Transaction.eType;
 
 public final class TransactionAppBackend {
 	private final UsersDataBase usersDataBase = new UsersDataBase(); // ensure only one data base for app
@@ -9,9 +12,9 @@ public final class TransactionAppBackend {
 	
 	//opening screen methods
 	protected void signup(String username, String password, int age) throws Exception {
-		User temp = new User(username, password, age);
-		this.usersDataBase.addUser(temp);
-		this.currentUser = temp;
+		User currUser = new User(username, password, age);
+		this.usersDataBase.addUser(currUser);
+		this.currentUser = currUser;
 	}
 	
 	protected void login(String username, String password)throws Exception {
@@ -30,6 +33,19 @@ public final class TransactionAppBackend {
 	
 	protected void changePassword(String password) throws Exception {
 		this.currentUser.setPassword(password);
+	}
+	
+	//transactions methods(might be incomes too later)
+	protected void addTransactions(String nameOfTransaction, String description, double cost, LocalDate dateOfTransaction, eType type) throws OutOfRangeException {
+		this.currentUser.addTransaction(new Transaction(nameOfTransaction, description, cost, dateOfTransaction, type));
+	}
+	
+	protected Double showTotalTransactionExpanse() {
+		return this.currentUser.calculateTransactionsTotal();
+	}
+	
+	protected HashMap<Integer, Double>showTotalByMonths(){
+		return this.currentUser.getSumByMonth();
 	}
 	
 	public String toString() {

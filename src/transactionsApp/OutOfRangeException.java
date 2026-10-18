@@ -1,6 +1,6 @@
 package transactionsApp;
 
-public class OutOfRangeException extends Exception {
+public class OutOfRangeException extends TransactionAppExceptions{
 	public OutOfRangeException(String msg) {
 		super(msg);
 	}
