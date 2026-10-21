@@ -133,6 +133,4 @@ public class TransactionAppFrontEnd extends Application {
         form.getChildren().addAll(title, username, password, submitBtn, toggleMode);
         mainLayout.setCenter(form);
 	}
-	
-
 }
