@@ -7,14 +7,12 @@ public class User {
 	private final HashMap<Integer, Double>sumByMonth;
 	private String username;
 	private Password password;
-	private int age;
 	private ArrayList<Transaction>transactions;
 	
 	
-	public User(String username, String password, int age) throws Exception {
+	public User(String username, String password) throws Exception {
 		setUsername(username);
 		this.password = new Password(password.toCharArray());
-		setAge(age);
 		this.transactions = new ArrayList<Transaction>();
 		this.sumByMonth = new HashMap<>();
 	}
@@ -37,17 +35,6 @@ public class User {
 	
 	protected void setPassword(String password) throws Exception { // change password
 		this.password.setHashPass(password.toCharArray());
-	}
-	
-	public int getAge() {
-		return this.age;
-	}
-	
-	public void setAge(int age) throws OutOfRangeException {
-		if(age < 10 || age > 120) {
-			throw new OutOfRangeException("Age is not eligble for using this application. Enter age again: ");
-		}
-		this.age = age;
 	}
 	
 	private ArrayList<Transaction> getTransactions(){

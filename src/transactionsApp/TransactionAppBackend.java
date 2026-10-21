@@ -11,8 +11,8 @@ public final class TransactionAppBackend {
 	private User currentUser;
 	
 	//opening screen methods
-	protected void signup(String username, String password, int age) throws Exception {
-		User currUser = new User(username, password, age);
+	protected void signup(String username, String password) throws Exception {
+		User currUser = new User(username, password);
 		this.usersDataBase.addUser(currUser);
 		this.currentUser = currUser;
 	}
