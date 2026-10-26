@@ -26,7 +26,7 @@ public class TransactionAppFrontEnd extends Application {
 	private BorderPane mainLayout;
 	private final TransactionAppBackend backend = new TransactionAppBackend(); 
 	
-	public static void main(String[]args) {
+	void main(String[]args) {
 		launch(args); // calling the start method
 	}
 	
